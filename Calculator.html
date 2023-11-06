@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mini Calculator</title>
+</head>
+<body>
+  <h1>Mini Calculator</h1>
+  <input type="number" id="number1" placeholder="Enter number 1">
+  <input type="number" id="number2" placeholder="Enter number 2">
+  <button id="addButton">Add</button>
+  <button id="subtractButton">Subtract</button>
+  <button id="divideButton">Divide</button>
+  <button id="multiplyButton">Multiply</button>
+</body>
+</html>
+<script>
+  const addButton = document.getElementById('addButton');
+  const subtractButton = document.getElementById('subtractButton');
+  const divideButton = document.getElementById('divideButton');
+  const multiplyButton = document.getElementById('multiplyButton');
+
+  addButton.addEventListener('click', function() {
+    performOperation('add');
+  });
+
+  subtractButton.addEventListener('click', function() {
+    performOperation('subtract');
+  });
+
+  divideButton.addEventListener('click', function() {
+    performOperation('divide');
+  });
+
+  multiplyButton.addEventListener('click', function() {
+    performOperation('multiply');
+  });
+
+  function performOperation(operation) {
+    const number1 = parseFloat(document.getElementById('number1').value);
+    const number2 = parseFloat(document.getElementById('number2').value);
+
+    if (isNaN(number1) || isNaN(number2)) {
+      alert('Please enter valid numbers.');
+      return;
+    }
+
+    let result;
+
+    switch (operation) {
+      case 'add':
+        result = number1 + number2;
+        break;
+      case 'subtract':
+        result = number1 - number2;
+        break;
+      case 'divide':
+        if (number2 === 0) {
+          alert('Division by zero is not allowed.');
+          return;
+        }
+        result = number1 / number2;
+        break;
+      case 'multiply':
+        result = number1 * number2;
+        break;
+      default:
+        alert('Invalid operation.');
+        return;
+    }
+
+    alert(`Result: ${result}`);
+  }
+</script>
